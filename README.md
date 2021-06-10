@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/IvanKozhevnikov/new-job.svg?branch=master)](https://travis-ci.org/IvanKozhevnikov/new-job)
-[![codecov](https://codecov.io/gh/IvanKozhevnikov/new-job/branch/master/graph/badge.svg?token=UHBPUPMT47)](https://codecov.io/gh/IvanKozhevnikov/new-job)
+
 
 С помощью Java сделать следующее:
 а) Считать файл со строчками вида

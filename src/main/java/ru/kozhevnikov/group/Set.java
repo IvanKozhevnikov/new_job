@@ -5,11 +5,11 @@ import ru.kozhevnikov.element.PlentyElement;
 import java.util.List;
 import java.util.Objects;
 
-public class Group {
+public class Set {
 
     private List<PlentyElement> group;
 
-    public Group(List<PlentyElement> group) {
+    public Set(List<PlentyElement> group) {
         this.group = group;
     }
 
@@ -25,7 +25,7 @@ public class Group {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Group groupOne = (Group) o;
+        Set groupOne = (Set) o;
         return group.equals(groupOne.group);
     }
 

@@ -2,7 +2,7 @@ package ru.kozhevnikov;
 
 import ru.kozhevnikov.element.Element;
 import ru.kozhevnikov.element.PlentyElement;
-import ru.kozhevnikov.group.Group;
+import ru.kozhevnikov.group.Set;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,15 +10,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-public class Main {
+public class Application {
 
     private final static String SEPARATE = File.separator;
     private final static String FILE = System.getProperty("user.dir") + SEPARATE + "src" +
             SEPARATE + "main" + SEPARATE + "resources" + SEPARATE + "lng.csv";
 
-    private static Map<Integer, ArrayList<Group>> sortedGroup = new TreeMap<>(Collections.reverseOrder());
+    private static Map<Integer, ArrayList<Set>> sortedGroup = new TreeMap<>(Collections.reverseOrder());
     private static Map<Element, ArrayList<PlentyElement>> storage = new HashMap<>();
-    private static Set<PlentyElement> uniqueStrings = new HashSet<>();
+    private static java.util.Set uniqueStrings = new HashSet<>();
 
     private static int numberGroup = 0;
 
@@ -73,8 +73,8 @@ public class Main {
         additionalGrouping();
 
         for (Map.Entry<Element, ArrayList<PlentyElement>> entry : storage.entrySet()) {
-            ArrayList<Group> value = sortedGroup.getOrDefault(entry.getValue().size(), new ArrayList<>());
-            Group group = new Group(entry.getValue());
+            ArrayList<Set> value = sortedGroup.getOrDefault(entry.getValue().size(), new ArrayList<>());
+            Set group = new Set(entry.getValue());
             value.add(group);
             sortedGroup.put(group.size(), value);
             numberGroup++;
@@ -92,10 +92,10 @@ public class Main {
             }
         }
 
-        List<Set<PlentyElement>> plentyElementSubGroup = new ArrayList<>();
+        List<java.util.Set> plentyElementSubGroup = new ArrayList<>();
         for (Map.Entry<PlentyElement, Integer> entry : plentyElementCount.entrySet()) {
             if(entry.getValue() > 1) {
-                Set<PlentyElement> set = new HashSet<>();
+                java.util.Set set = new HashSet<>();
                 for (Element element : entry.getKey().getValidElements()) {
                     if(storage.containsKey(element)) {
                         set.addAll(storage.remove(element));
@@ -106,9 +106,9 @@ public class Main {
             }
         }
 
-        for (Set<PlentyElement> subGroup : plentyElementSubGroup) {
-            ArrayList<Group> value = sortedGroup.getOrDefault(subGroup.size(), new ArrayList<>());
-            Group group = new Group(new ArrayList<>(subGroup));
+        for (java.util.Set subGroup : plentyElementSubGroup) {
+            ArrayList<Set> value = sortedGroup.getOrDefault(subGroup.size(), new ArrayList<>());
+            Set group = new Set(new ArrayList<>(subGroup));
             value.add(group);
             sortedGroup.put(group.size(), value);
             numberGroup++;
@@ -118,8 +118,8 @@ public class Main {
     public static void print() {
         System.out.println("Кол-во групп " + numberGroup);
         int count = 1;
-        for (Map.Entry<Integer, ArrayList<Group>> entry : sortedGroup.entrySet()) {
-            for(Group group : entry.getValue()) {
+        for (Map.Entry<Integer, ArrayList<Set>> entry : sortedGroup.entrySet()) {
+            for(Set group : entry.getValue()) {
                 System.out.println("Группа " + count + "\n");
                 System.out.println(group);
                 count++;
